@@ -873,31 +873,26 @@ body{
     <div class="spanel" id="p3">
       <span class="step-num">Step 3 of 4 — Commitment Forms</span>
       <h2 class="step-title">Commitment<br>Forms</h2>
-      <p class="step-sub" style="margin-bottom:16px">Please make sure to sign:</p>
-      <ul class="step-list">
-        <li>The <strong>WBF form</strong> if you are going to take part in WBF events</li>
-        <li>The <strong>EBL form</strong> if you are going to take part in EBL events</li>
-      </ul>
-      <p class="step-sub" style="margin-top:14px;margin-bottom:44px">We recommend signing <strong>both forms now</strong> to cover all future situations.</p>
+      <p class="step-sub" style="margin-bottom:32px">To participate in WBF and EBL competitions you are required to sign the following commitment forms. You will be guided through each one.</p>
 
-      <div class="choices">
-        <div class="choice" id="ftc-wbf" onclick="toggleFT('wbf')">
-          <div class="choice-ck" id="ftck-wbf"></div>
+      <div class="choices" style="pointer-events:none">
+        <div class="choice sel">
+          <div class="choice-ck" style="background:var(--teal);border-color:var(--teal);color:#fff">✓</div>
           <div>
             <div class="choice-org">WBF</div>
             <div class="choice-name">World Bridge Federation</div>
             <div class="choice-desc">Required for World Championships and all WBF-sanctioned international competitions.</div>
           </div>
         </div>
-        <div class="choice" id="ftc-ebl" onclick="toggleFT('ebl')">
-          <div class="choice-ck" id="ftck-ebl"></div>
+        <div class="choice sel">
+          <div class="choice-ck" style="background:var(--teal);border-color:var(--teal);color:#fff">✓</div>
           <div>
             <div class="choice-org">EBL</div>
             <div class="choice-name">European Bridge League</div>
             <div class="choice-desc">Required for European Championships and all EBL-sanctioned competitions.</div>
           </div>
         </div>
-        <div class="choice" id="ftc-minor" onclick="toggleFT('minor')" style="display:none">
+        <div id="ftc-minor" class="choice" style="display:none;pointer-events:auto" onclick="toggleFT('minor')">
           <div class="choice-ck" id="ftck-minor"></div>
           <div>
             <div class="choice-org">Minor</div>
@@ -1164,7 +1159,6 @@ function step(n){
     }
     document.getElementById('gdpr_ck').style.outline='';
   }
-  if(n>3&&curStep===3&&!selForms.wbf&&!selForms.ebl){alert('Please select at least one Commitment Form.');return;}
   document.querySelectorAll('.spanel').forEach(p=>p.classList.remove('on'));
   const p=document.getElementById('p'+n);
   if(p){p.classList.add('on');curStep=n;}
@@ -1218,8 +1212,8 @@ function toggleFT(t){
 }
 
 function goAdobeSign(){
-  if(!selForms.wbf&&!selForms.ebl){alert('Please select at least one form.');return;}
-  queue=[];if(selForms.wbf)queue.push('wbf');if(selForms.ebl)queue.push('ebl');if(selForms.minor)queue.push('minor');
+  queue=['wbf','ebl'];
+  if(isMinor) queue.push('minor');
   qIdx=0;openAdobeSign(queue[qIdx]);
 }
 function openAdobeSign(formType){
@@ -1258,9 +1252,7 @@ function openAdobeSign(formType){
     formType==='wbf'?'WBF Commitment Form':
     formType==='ebl'?'EBL Commitment Form':'Commitment Form for Minors';
   document.getElementById('redirect-name').textContent=`${gn} ${fn}`;
-  document.getElementById('redirect-btn').onclick=async ()=>{
-    // Save registration to persistent storage
-    await saveRegistration(formType);
+  document.getElementById('redirect-btn').onclick=()=>{
     window.open(url,'_blank');
   };
 }
