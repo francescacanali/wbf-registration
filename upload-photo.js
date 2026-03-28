@@ -1,0 +1,18 @@
+# Cloudflare
+CF_ACCOUNT_ID=your_cloudflare_account_id
+CF_API_TOKEN=your_cloudflare_api_token_with_d1_and_r2_permissions
+CF_D1_DATABASE_ID=your_d1_database_id
+
+# Cloudflare R2
+CF_R2_BUCKET=wbf-players-photos
+CF_R2_ACCESS_KEY_ID=your_r2_access_key_id
+CF_R2_SECRET_ACCESS_KEY=your_r2_secret_access_key
+CF_R2_PUBLIC_URL=https://photos.worldbridge.org
+
+# Staff dashboard password (choose a strong password)
+STAFF_PASSWORD=choose_a_strong_password_here
+
+# Adobe Sign Widget IDs
+ADOBE_WID_WBF=CBFCIBAA3AAABLblqZhBaxcl7jhcLoqyZ0ucg4BBZISr6-dO3ycmtb4Dzy2NIek1HHhrZobXyeNbHFD1PAc0*
+ADOBE_WID_EBL=your_ebl_widget_id_here
+ADOBE_WID_MINOR=your_minor_widget_id_here
