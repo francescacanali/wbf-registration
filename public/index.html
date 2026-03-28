@@ -1235,22 +1235,22 @@ function openAdobeSign(formType){
     minor:'CBFCIBAA3AAABLblqZhBaxcl7jhcLoqyZ0ucg4BBZISr6-dO3ycmtb4Dzy2NIek1HHhrZobXyeNbHFD1PAc0*'
   };
 
-  // Adobe Sign requires literal colons — do NOT use URLSearchParams (it encodes : as %3A)
+  // Adobe Sign URL pre-fill: uses # then FieldName=Value&FieldName2=Value2
   const enc=v=>encodeURIComponent(v);
   const fields=[
-    `field:First_name=${enc(gn)}`,
-    `field:Family_name=${enc(fn)}`,
-    `field:Country_birth=${enc(cob)}`,
-    `field:Country_resident=${enc(cor)}`,
-    `field:Membership_nbo=${enc(nbo)}`,
-    `field:Email=${enc(em)}`,
-    `field:Gender=${enc(gender)}`,
-    `field:Date_birth=${enc(dobFmt)}`,
-    `field:Date=${enc(today)}`,
+    `First_name=${enc(gn)}`,
+    `Family_name=${enc(fn)}`,
+    `Country_birth=${enc(cob)}`,
+    `Country_resident=${enc(cor)}`,
+    `Membership_nbo=${enc(nbo)}`,
+    `Email=${enc(em)}`,
+    `Gender=${enc(gender)}`,
+    `Date_birth=${enc(dobFmt)}`,
+    `Date=${enc(today)}`,
   ].join('&');
 
   const wid=WIDS[formType];
-  const url=`https://eu1.documents.adobe.com/public/esignWidget?wid=${wid}&${fields}`;
+  const url=`https://eu1.documents.adobe.com/public/esignWidget?wid=${wid}#${fields}`;
 
   // Show redirect screen then open Adobe Sign
   show('sredirect');
