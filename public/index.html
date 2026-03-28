@@ -1264,13 +1264,7 @@ function openAdobeSign(formType){
 }
 function goSign(){goAdobeSign();}
 
-// goSign_old removed — 
-  if(!selForms.wbf&&!selForms.ebl){alert('Please select at least one form.');return;}
-  queue=[];if(selForms.wbf)queue.push('wbf');if(selForms.ebl)queue.push('ebl');if(selForms.minor)queue.push('minor');
-  qIdx=0;loadCommit(0);show('sc');
-  setTimeout(()=>{setupSig('sc2','sph','sw');if(isMinor)setupSig('psc','psph','psw');},120);
-  document.getElementById('sdate').value=new Date().toLocaleDateString('en-GB');
-}
+// goSign_old removed
 function loadCommit(i){
   const t=queue[i];
   const titles={wbf:'WBF Commitment Form',ebl:'EBL Commitment Form',minor:'Commitment Form for Minors'};
